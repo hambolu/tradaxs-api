@@ -12,6 +12,10 @@ var balance = require('crypto-balances');
 var erc20 = require('erc20-wallet');
 const Web3 = require('web3');
 var bodyParser = require('body-parser')
+const PORT = process.env.PORT || 8080;
+app.listen(port, () => {
+  console.log(`Listing ${port}`)
+})
 
 //let web3 = new Web3('ws://localhost:8546');
 
@@ -105,4 +109,4 @@ app.get('/bnbtx', function (req, res){
 });
 
 //app.listen(3000, () => console.log('working'))
-const PORT = process.env.PORT || 8080;
+
