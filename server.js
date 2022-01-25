@@ -78,12 +78,12 @@ var jsonParser = bodyParser.json()
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 app.get('/bnb-balance', urlencodedParser, function (req, res){
-     var balance = req.body.balance;
+     var balance = '0xa111357C5CddA47b9263DDe9D7694008A6b5628b';
     web3.eth.getBalance(balance, function(error, result) {
         res.json(result);
       });
 });
-
+//req.body.balance
 app.get('/gas', function (req, res){
    var gas = web3.eth.generate_gas_price();
     res.json(gas);
