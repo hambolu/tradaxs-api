@@ -90,7 +90,7 @@ app.get('/gas', function (req, res){
    var gas = web3.eth.generate_gas_price();
     res.json(gas);
 });
-app.post('/bnbtx', urlencodedParser, function (req, res){
+app.post('/bnbtx', jsonParser, function (req, res){
     
     var tx = {
         to: req.body.holder,
