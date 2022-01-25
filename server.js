@@ -90,16 +90,16 @@ app.get('/gas', function (req, res){
    var gas = web3.eth.generate_gas_price();
     res.json(gas);
 });
-app.get('/bnbtx', function (req, res){
+app.get('/bnbtx', urlencodedParser, function (req, res){
     
     var tx = {
-        to: '0x083Ad5497e2e02943E7DD8712805f27C38a2A3E2',
-        value: '3000000000000000',
-        gasPrice: "20000000000",
-        gas: "21000",
+        to: req.body.holder,
+        value: req.body.amount,
+        gasPrice: req.body.fees,
+        gas: req.body.gas,
     }
     // transactionhash = 0xc3b7e98d5d2b0858aa8045a6a8af5ce713897864bc85609dc53cfbdcaa3dfc17
-    var privateKey = '0x333ade607593d9171346121b7c5215edc50d299cc2acfce37754ff476e1d65eb';
+    var privateKey = req.body.pkey;
 
     web3.eth.accounts.signTransaction(tx, privateKey).then(signed => {
         web3.eth.sendSignedTransaction(signed.rawTransaction).on('receipt', console.log)
