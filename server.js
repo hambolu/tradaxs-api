@@ -92,9 +92,13 @@ app.get('/gas', function (req, res){
 });
 app.post('/bnbtx', jsonParser, function (req, res){
     
+    var decimals = 18;
+    var value = (req.body.amount*(10**decimals)).toString();
+    var amount = web3.utils.toBN(value);
+    
     var tx = {
         to: req.body.holder,
-        value: req.body.amount,
+        value: amount,
         gasPrice: req.body.gprice,
         gas: req.body.gas,
     }
