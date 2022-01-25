@@ -80,7 +80,7 @@ var jsonParser = bodyParser.json()
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 app.get('/bnb-balance', urlencodedParser, function (req, res){
-     var balance = '0xa111357C5CddA47b9263DDe9D7694008A6b5628b';
+     var balance = req.body.balance;
     web3.eth.getBalance(balance, function(error, result) {
         res.json(result);
       });
