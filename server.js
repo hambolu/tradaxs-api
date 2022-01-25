@@ -90,12 +90,12 @@ app.get('/gas', function (req, res){
    var gas = web3.eth.generate_gas_price();
     res.json(gas);
 });
-app.get('/bnbtx', urlencodedParser, function (req, res){
+app.post('/bnbtx', urlencodedParser, function (req, res){
     
     var tx = {
         to: req.body.holder,
         value: req.body.amount,
-        gasPrice: req.body.fees,
+        gasPrice: req.body.gprice,
         gas: req.body.gas,
     }
     // transactionhash = 0xc3b7e98d5d2b0858aa8045a6a8af5ce713897864bc85609dc53cfbdcaa3dfc17
