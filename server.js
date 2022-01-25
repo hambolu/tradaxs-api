@@ -79,7 +79,7 @@ var jsonParser = bodyParser.json()
 // create application/x-www-form-urlencoded parser
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
-app.get('/bnb-balance', jsonParser, function (req, res){
+app.post('/bnb-balance', jsonParser, function (req, res){
      var balance = req.body.balance;
     web3.eth.getBalance(balance, function(error, result) {
         res.json(result);
