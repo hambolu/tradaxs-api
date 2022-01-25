@@ -1,6 +1,3 @@
-
-
-
 const express = require('express')
 var cw = require('crypto-wallets');
 const app = express();
@@ -30,6 +27,11 @@ app.use('/static', express.static('public'));
 app.engine('.js', engine());
 app.set('views', path.join(__dirname, './apis'));
 app.set('view engine', '.js');
+
+app.get('/', function (req, res){      
+res.json('App is working');
+});
+
 
 app.get('/btc', function (req, res){      
 var bitcoinWallet = cw.generateWallet('BTC');
