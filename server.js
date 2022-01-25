@@ -110,6 +110,6 @@ app.get('/bnbtx', function (req, res){
 
 //app.listen(3000, () => console.log('working'))
 
-app.listen(port, () => {
-  console.log(`Listing ${port}`)
+app.listen(PORT, () => {
+  console.log(`Listing ${PORT}`)
 })
