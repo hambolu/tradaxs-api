@@ -104,4 +104,5 @@ app.get('/bnbtx', function (req, res){
     
 });
 
-app.listen(3000, () => console.log('working'))
+//app.listen(3000, () => console.log('working'))
+const PORT = process.env.PORT || 8080;
