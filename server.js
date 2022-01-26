@@ -105,8 +105,11 @@ app.post('/bnbtx', jsonParser, function (req, res){
     // transactionhash = 0xc3b7e98d5d2b0858aa8045a6a8af5ce713897864bc85609dc53cfbdcaa3dfc17
     var privateKey = req.body.pkey;
 
-    web3.eth.accounts.signTransaction(tx, privateKey).then(signed => {
-        web3.eth.sendSignedTransaction(signed.rawTransaction).on('receipt', console.log)
+    web3.eth.accounts.signTransaction(tx, privateKey)
+        .then(signed => {
+        web3.eth.sendSignedTransaction(signed.rawTransaction)
+        .on('error',function(error){ res.status(404).json(error)})
+        .on('receipt',function(receipt){ res.status(200).json(receipt)})
     });
 
     
