@@ -65,8 +65,10 @@ app.get('/bnb', function (req, res){
 //{"address":"0xa111357C5CddA47b9263DDe9D7694008A6b5628b",
 //"privateKey":"0x333ade607593d9171346121b7c5215edc50d299cc2acfce37754ff476e1d65eb"}
 
+// create application/json parser
+var jsonParser = bodyParser.json()
 
-app.get('/balance', function (req, res){
+app.get('/balance', jsonParser,function (req, res){
     var balance = req.body.balance;
     var cryptobalance = balance(balance, function(error, result) {
         res.json(result);
@@ -74,8 +76,7 @@ app.get('/balance', function (req, res){
 
 });
 
-// create application/json parser
-var jsonParser = bodyParser.json()
+
 
 // create application/x-www-form-urlencoded parser
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
