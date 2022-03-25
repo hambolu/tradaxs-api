@@ -67,7 +67,8 @@ app.get('/bnb', function (req, res){
 
 
 app.get('/balance', function (req, res){
-    var cryptobalance = balance("0x38968A4CE4214d3a3C49B3b2C8E214e6f5F09598", function(error, result) {
+    var balance = req.body.balance;
+    var cryptobalance = balance(balance, function(error, result) {
         res.json(result);
       });
 
