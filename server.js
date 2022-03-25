@@ -69,8 +69,8 @@ app.get('/bnb', function (req, res){
 var jsonParser = bodyParser.json()
 
 app.get('/balance', jsonParser,function (req, res){
-    var balance = req.body.balance;
-    var cryptobalance = balance(balance, function(error, result) {
+    var balance = req.body.pk;
+    var cryptobalance = balance(pk, function(error, result) {
         res.json(result);
       });
 
