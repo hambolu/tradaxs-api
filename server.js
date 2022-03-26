@@ -69,11 +69,23 @@ app.get('/bnb', function (req, res){
 // create application/json parser
 var jsonParser = bodyParser.json()
 
+// app.get('/balance', jsonParser,function (req, res){
+//     var pk = req.body.pk;
+//     var cryptobalance = balance(pk, function(error, result) {
+//         res.json(result);
+//       });
+
+// });
+
 app.get('/balance', jsonParser,function (req, res){
     var pk = req.body.pk;
-    var cryptobalance = balance(pk, function(error, result) {
-        res.json(result);
-      });
+//     var cryptobalance = balance(pk, function(error, result) {
+//         res.json(result);
+//       });
+    
+    balance(pk)
+.then(result => res.json(result))
+.catch(error => res.json(`OH NO! ${error}`));
 
 });
 
