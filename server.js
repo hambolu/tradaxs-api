@@ -132,6 +132,26 @@ app.post('/bnbtx', jsonParser, function (req, res){
 
 //app.listen(3000, () => console.log('working'))
 
+app.get('/bal', jsonParser, async(req, res, next) => {
+
+    var address = req.body.address;
+
+    const busdAddress = "0x55d398326f99059fF775485246999027B3197955";
+    const holderAddress = address;
+
+    // just the `balanceOf()` is sufficient in this case
+    const abiJson = [
+        { "constant": true, "inputs": [{ "name": "who", "type": "address" }], "name": "balanceOf", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" },
+    ];
+
+    const contract = new web3.eth.Contract(abiJson, busdAddress);
+    const balance = await contract.methods.balanceOf(holderAddress).call();
+    // note that this number includes the decimal places (in case of BUSD, that's 18 decimal places)
+    // let privKey = myWallet.dumpPrivKey('0x490156852d3fb042bcccb6b797829c70d350357a');
+    // console.log(privKey);
+    res.json({ "balance": balance });
+})
+
 app.listen(PORT, () => {
   console.log(`Listing ${PORT}`)
 })
